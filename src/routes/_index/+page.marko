@@ -1,0 +1,42 @@
+<div class="container">
+  <page-header/>
+  <main>
+    <features/>
+    <user-form/>
+  </main>
+</div>
+style {
+  main {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 1rem;
+  }
+  .column {
+    width: calc(50% - 0.5rem);
+    transition: all 0.1s;
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    font-size: clamp(1em, 2vw, 2em);
+    padding: 1em;
+    box-sizing: border-box;
+    height: 100%;
+    width: 100%;
+  }
+  img.logo {
+    width: 12em;
+  }
+  @media only screen and (max-width: 600px) {
+    main {
+      gap: 0;
+    }
+    .column {
+      width: 100%;
+    }
+  }
+}

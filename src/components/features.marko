@@ -1,0 +1,51 @@
+<div class="column">
+  <div class="header">
+    <h2>Allstate Extended Vehicle Care</h2>
+    <p>
+      For as little as $19/mo, we'll pay for repairs after your maufacture's warranty expires.
+    </p>
+  </div>
+  <for|item, index| of=state.items>
+    <feature-card key=index data=item/>
+  </for>
+</div>
+class {
+  onCreate() {
+    this.state = {
+      items: [],
+    };
+    this.timer = null;
+  }
+  onMount() {
+    this.timer = setTimeout(() => {
+      this.state.items = [
+        {
+          title: "Affordable Protection Plans",
+          subtitle: "Save up to 50% when you buy online from Allstate",
+        },
+        {
+          title: "Affordable Protection Plans",
+          subtitle: "Save up to 50% when you buy online from Allstate",
+        },
+        {
+          title: "Affordable Protection Plans",
+          subtitle: "Save up to 50% when you buy online from Allstate",
+        },
+      ];
+    }, 0);
+  }
+  onDestroy() {
+    clearTimeout(this.timer);
+  }
+}
+style {
+  .header {
+    background-color: blue;
+    padding: 1rem;
+    color: white;
+
+    h2 {
+      margin: 0;
+    }
+  }
+}

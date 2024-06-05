@@ -1,0 +1,20 @@
+<div>
+  <label>
+    <input
+      type="checkbox"
+      name=input.name
+      value=input.value
+      on-change("handleChange")
+    >
+    ${input.label}
+  </label>
+</div>
+class {
+  handleChange(event) {
+    this.emit("checkbox-change", {
+      name: event.target.name,
+      value: event.target.value,
+      checked: event.target.checked,
+    });
+  }
+}

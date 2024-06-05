@@ -1,0 +1,10 @@
+<div>
+  <button on-click("handleClick") class=input.className>
+    ${input.label}
+  </button>
+</div>
+class {
+  handleClick(event) {
+    this.emit("click", event);
+  }
+}

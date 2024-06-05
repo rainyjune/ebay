@@ -1,0 +1,50 @@
+import { formatNum } from "./util.js";
+
+<div>
+  <span>${formatNum(state.day)}</span>
+   :
+  <span>${formatNum(state.hour)}</span>
+   :
+  <span>${formatNum(state.minute)}</span>
+   :
+  <span>${formatNum(state.second)}</span>
+</div>
+class {
+  onCreate() {
+    const targetDate = new Date();
+    targetDate.setDate(targetDate.getDate() + 2);
+    this.targetDate = targetDate;
+    this.state = {
+      day: 0,
+      hour: 0,
+      minute: 0,
+      second: 0,
+    };
+    this.boundCountdown = this.countDown.bind(this);
+    this.timer = null;
+  }
+  onMount() {
+    this.timer = setInterval(this.boundCountdown, 1000);
+  }
+  onDestroy() {
+    clearInterval(this.timer);
+    this.timer = null;
+  }
+  countDown() {
+    const now = new Date();
+    const diff = this.getTimeDifference(now, this.targetDate);
+    this.state.day = diff.days;
+    this.state.hour = diff.hours;
+    this.state.minute = diff.minutes;
+    this.state.second = diff.seconds;
+  }
+  getTimeDifference(startDate, endDate) {
+    const delta = Math.abs(endDate - startDate) / 1000; // Get total seconds
+    const days = Math.floor(delta / 86400); // Calculate whole days
+    const hours = Math.floor(delta / 3600) % 24; // Calculate whole hours
+    const minutes = Math.floor(delta / 60) % 60; // Calculate whole minutes
+    const seconds = Math.floor(delta % 60); // Calculate remaining seconds
+
+    return { days, hours, minutes, seconds };
+  }
+}
